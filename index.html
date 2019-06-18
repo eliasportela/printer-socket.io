@@ -3,8 +3,56 @@
   <head>
     <meta charset="UTF-8">
     <title>LeCard | Client</title>
+    <style>
+    	.container {
+    		width: 450px;
+    		height: 400px;
+    		position: relative;
+    	}
+    	.col {
+    		width: 50%;
+    		display: inline-block;
+    	}
+    	.circle {
+    		width: 16px;
+    		height: 16px;
+    		border-radius: 8px;
+    		position: absolute;
+    	}
+    	.circle.ativo {
+    		background-color: #4CAF50;
+    	}
+    	.logs {
+    		height: 300px;
+    		border: 1px solid;
+    		overflow: auto;
+    	}
+    </style>
   </head>
   <body>
-    Elias
+    <div class="container">
+    	<div class="col" style="float: left;">
+    		<div style="padding: 16px">
+    			<h5>Status da Conexāo</h5>
+    			<div>
+    				<span class="circle ativo">&nbsp;</span>
+    				<span style="padding-left: 26px">Conectado ao Servidor</span>
+    			</div>
+    			<div style="margin-top: 12px">
+    				<span class="circle ativo">&nbsp;</span>
+    				<span style="padding-left: 26px">Impressora Conectada</span>
+    			</div>
+    			<h5>Meus Dados</h5>
+    		</div>
+    	</div>
+    	<div class="col">
+    		<div style="padding: 12px 12px 12px 0; text-align: center;">
+    			<h5>Logs</h5>
+    			<div class="logs">
+    				
+    			</div>
+    		</div>
+    	</div>
+    </div>
   </body>
 </html>
