@@ -1,0 +1,10 @@
+<root cut="full">
+  <line align="center" textTransform="bold" fontSize="expanded">{{ hello }}</line>
+  <line align="center" textTransform="italic" fontSize="expanded">{{ hello }}</line>
+  <line align="center" textTransform="bold" fontSize="expanded">{{ hello }}</line>
+  <line align="center" textTransform="italic" fontSize="expanded">{{ hello }}</line>
+  <line align="center" textTransform="bold" fontSize="expanded">{{ hello }}</line>
+  <line align="center" textTransform="italic" fontSize="expanded">{{ hello }}</line>
+  <line align="center" textTransform="bold" fontSize="expanded">{{ hello }}</line>
+  <line align="center" textTransform="italic" fontSize="expanded">{{ hello }}</line>
+</root>

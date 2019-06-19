@@ -6,8 +6,8 @@ const application = require('./application');
 function createWindow () {
   // Criar uma janela de navegação.
   win = new BrowserWindow({
-    width: 470,
-    height: 450,
+    width: 600,
+    height: 360,
     webPreferences: {
       nodeIntegration: true
     }
@@ -28,6 +28,7 @@ function createWindow () {
   })
 
   application.start();
+  application.statusPrinter();
 
 }
 

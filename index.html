@@ -1,58 +1,147 @@
-<!DOCTYPE html>
+<html lang="pt-br">
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>LeCard | Client</title>
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/animate.css">
     <style>
-    	.container {
-    		width: 450px;
-    		height: 400px;
-    		position: relative;
-    	}
-    	.col {
-    		width: 50%;
-    		display: inline-block;
-    	}
     	.circle {
     		width: 16px;
     		height: 16px;
     		border-radius: 8px;
     		position: absolute;
+            background-color:  #dc3545;
     	}
     	.circle.ativo {
-    		background-color: #4CAF50;
+    		background-color: #28a745;
     	}
     	.logs {
-    		height: 300px;
-    		border: 1px solid;
+    		height: 60vh;
     		overflow: auto;
     	}
+
+        #onload {
+            position: fixed;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;  s
+        }
+        #onload .conteudo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
   </head>
   <body>
-    <div class="container">
-    	<div class="col" style="float: left;">
-    		<div style="padding: 16px">
-    			<h5>Status da Conexāo</h5>
-    			<div>
-    				<span class="circle ativo">&nbsp;</span>
-    				<span style="padding-left: 26px">Conectado ao Servidor</span>
-    			</div>
-    			<div style="margin-top: 12px">
-    				<span class="circle ativo">&nbsp;</span>
-    				<span style="padding-left: 26px">Impressora Conectada</span>
-    			</div>
-    			<h5>Meus Dados</h5>
-    		</div>
-    	</div>
-    	<div class="col">
-    		<div style="padding: 12px 12px 12px 0; text-align: center;">
-    			<h5>Logs</h5>
-    			<div class="logs">
-    				
-    			</div>
-    		</div>
-    	</div>
+    <div id="app" class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-5">
+                <h6 class="mb-3">Status da Conexāo</h6>
+                <ul class="list-group small">
+                    <li class="list-group-item">
+                        <span class="circle" :class="{'ativo': conectado}">&nbsp;</span>
+                        <span style="padding-left: 26px">Conectado ao servidor</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="circle" :class="{'ativo': printerConectada}">&nbsp;</span>
+                        <span style="padding-left: 26px">Impressora conectada</span>
+                    </li>
+                </ul>
+                <!-- <div class="small mt-4">
+                  <div class="p-1"><b>Empresa:</b> <br> {{dados.razao_social}}</div>
+                  <div class="p-1"><b>Plano:</b>  <br> {{dados.nome_plano}}</div>
+                </div> -->
+            </div>
+            <div class="col-7">
+                <h6 class="mb-3">Logs</h6>
+                <div class="card px-2 py-1 logs mb-3 small">
+                    <div class="mt-1" v-for="m in messages">
+                        <b>{{m.time}}</b>
+                        {{m.description}}
+                    </div>
+                </div>
+                <button class="btn btn-block btn-secondary" @click="testeImpressao">Teste de Impressāo</button>
+            </div>
+        </div>
+
+        <div id="onload" v-show="onload">
+            <div class="conteudo text-center">
+                <img src="assets/receipt.svg" class="animated flipInX delay-1s" width="100px">
+                <h5 class="mt-4 animated fadeInUp delay-1s">LeCard | Order Printer <small>v1</small></h5>
+            </div>
+        </div>
+
     </div>
+
+    <script src="assets/vue.js"></script>
+    <script src="assets/socket.io.js"></script>
+    <script>
+        var empresa = 1;
+        var socket = io('https://softcomanda.herokuapp.com/' + empresa);
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                messages: [],
+                conectado: false,
+                printerConectada: false,
+                onload: true,
+
+                dados: {
+                    razao_social: "Stork Digital",
+                    nome_plano: "Smart Cozinha"
+                },
+
+                printer: { 
+                    layout: 'hello',
+                    copies: 1,
+                    printer: {
+                        ip: '1.1.1.51',
+                        port: 9000
+                    },
+                    data: {
+                      hello: 'Elias'
+                    }
+                }
+            },
+            
+            methods: {
+                testeImpressao() {
+                    socket.emit('print_order', this.printer);
+                }
+            },
+
+            created() {
+                socket.on('connect', () => {
+                    this.conectado = true;
+                });
+
+                socket.on('message', res => {
+                    this.messages.push(res.data)
+                });
+
+                socket.on('connect_printer', res => {
+                    console.log(res);
+                    this.printerConectada = res;
+                });                
+                
+                socket.on('disconnect', function(){
+                    this.conectado = false;
+                });
+
+                setTimeout(() => {
+                    this.onload = false;
+                }, 3500)
+            }
+        })
+    </script>
+
   </body>
 </html>
