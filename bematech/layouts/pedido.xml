@@ -4,11 +4,14 @@
   <line textTransform="bold" align="center">{{ tipo }}</line>
   <line textTransform="bold" align="center">Pedido: {{ id_comanda_produto }}</line>
   <line textTransform="bold" align="center">{{ data_pedido }}</line>
+  <line textTransform="bold" align="center">Cliente: {{ cliente }}</line>
+  <line textTransform="bold" align="center">{{ obs_comanda }}</line>
   <line align="center">--------------------------------------------------</line>
   <line></line>
   <line textTransform="bold" align="center">PRODUTOS</line>
   <line textTransform="bold">#Qtd #Produto</line>
   <line>{{quantidade}}x {{nome_produto}} {{nome_tabela}}</line>
+  <line>{{quantidade}}x {{nome_produto}} {{divisoes}}</line>
   <line textTransform="bold">#Adicionais: {{adicionais}}</line>
   <line textTransform="bold">#Remocoes: {{remocoes}}</line>
   <line textTransform="bold">#Obs: {{observacao}}</line>
