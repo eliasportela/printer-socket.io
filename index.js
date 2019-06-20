@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron')
 let win
 
 const application = require('./application');
@@ -7,7 +7,8 @@ function createWindow () {
   // Criar uma janela de navegação.
   win = new BrowserWindow({
     width: 600,
-    height: 360,
+    height: 300,
+    resizable: false,
     webPreferences: {
       nodeIntegration: true
     }
@@ -35,6 +36,7 @@ function createWindow () {
 // Este método será chamado quando o Electron tiver finalizado
 // a inicialização e está pronto para criar a janela browser.
 // Algumas APIs podem ser usadas somente depois que este evento ocorre.
+Menu.setApplicationMenu(null);
 app.on('ready', createWindow)
 
 // Finaliza quando todas as janelas estiverem fechadas.

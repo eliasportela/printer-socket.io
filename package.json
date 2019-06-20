@@ -8,11 +8,11 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "electron": "^5.0.4",
-    "socket.io-client": "^2.2.0",
-    "xml2js": "^0.4.15",
+  "dependencies": {
     "async": "^1.5.0",
-    "handlebars": "^4.0.5"
+    "electron": "^5.0.4",
+    "handlebars": "^4.0.5",
+    "socket.io-client": "^2.2.0",
+    "xml2js": "^0.4.15"
   }
 }
