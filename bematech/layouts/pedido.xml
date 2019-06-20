@@ -1,4 +1,4 @@
-<root cut="full">
+<root cut="half">
   <line align="center" textTransform="bold" fontSize="large">{{nome_empresa}}</line>
   <line></line>
   <line textTransform="bold" align="center">{{ tipo }}</line>
