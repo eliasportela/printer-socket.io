@@ -3,6 +3,7 @@
 <head>
 	<title>&nbsp;</title>
 	<link rel="stylesheet" href="assets/animate.css">
+	<link rel="stylesheet" href="assets/bootstrap.min.css">
 	<style>
 		#onload {
             position: fixed;
@@ -10,7 +11,7 @@
             top: 0;
             left: 0;
             right: 0;
-            background-color: #ffffff;  s
+            background-color: #ffffff;
         }
         #onload .conteudo {
             position: absolute;
@@ -18,12 +19,17 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+        img {
+        	width: 250px;
+        	height: auto;
+        }
 	</style>
 </head>
 <body>
 	<div id="onload" v-show="onload">
         <div class="conteudo text-center">
-            <img src="assets/receipt.svg" class="animated flip infinite" width="100px">
+        	<img src="assets/splash.gif">
+            <h6 class="animated fadeIn delay-1s">LeCard | Order Printer v1</h5>
         </div>
     </div>
 </body>

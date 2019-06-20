@@ -8,8 +8,9 @@ function createWindow () {
   
   //Janela de loading
   splash = new BrowserWindow({ 
-    width: 500, 
+    width: 300, 
     height: 300,
+    transparent:true,
     frame: false
   });
 
@@ -18,7 +19,7 @@ function createWindow () {
   // Criar uma janela de navegação.
   win = new BrowserWindow({
     width: 600,
-    height: 300,
+    height: 350,
     resizable: false,
     show: false,
     webPreferences: {
