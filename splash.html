@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>&nbsp;</title>
+	<link rel="stylesheet" href="assets/animate.css">
+	<style>
+		#onload {
+            position: fixed;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;  s
+        }
+        #onload .conteudo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+	</style>
+</head>
+<body>
+	<div id="onload" v-show="onload">
+        <div class="conteudo text-center">
+            <img src="assets/receipt.svg" class="animated flip infinite" width="100px">
+        </div>
+    </div>
+</body>
+</html>

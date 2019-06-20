@@ -1,14 +1,26 @@
 const { app, BrowserWindow, Menu } = require('electron')
-let win
+let win;
+let splash;
 
 const application = require('./application');
 
 function createWindow () {
+  
+  //Janela de loading
+  splash = new BrowserWindow({ 
+    width: 500, 
+    height: 300,
+    frame: false
+  });
+
+  splash.loadFile('splash.html')
+
   // Criar uma janela de navegação.
   win = new BrowserWindow({
     width: 600,
     height: 300,
     resizable: false,
+    show: false,
     webPreferences: {
       nodeIntegration: true
     }
@@ -30,6 +42,14 @@ function createWindow () {
 
   application.start();
   application.statusPrinter();
+
+  win.once('ready-to-show', () => {
+    setTimeout(function(){ 
+        splash.close();
+        splash = null;
+        win.show();
+    }, 3000);
+  })
 
 }
 
