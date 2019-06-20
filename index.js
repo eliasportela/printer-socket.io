@@ -1,6 +1,7 @@
 const { app, BrowserWindow, Menu } = require('electron')
 let win;
 let splash;
+let path = require('path');
 
 const application = require('./application');
 
@@ -11,6 +12,7 @@ function createWindow () {
     width: 300, 
     height: 300,
     transparent:true,
+    icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
     frame: false
   });
 
@@ -22,6 +24,7 @@ function createWindow () {
     height: 350,
     resizable: false,
     show: false,
+    icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
     webPreferences: {
       nodeIntegration: true
     }
