@@ -61,7 +61,7 @@
     <script src="assets/vue.js"></script>
     <script src="assets/socket.io.js"></script>
     <script>
-        var empresa = 1;
+        var empresa = 3;
         var socket = io('https://softcomanda.herokuapp.com/' + empresa);
 
         var app = new Vue({
@@ -80,7 +80,7 @@
                     layout: 'pedido',
                     copies: 1,
                     printer: {
-                        ip: '192.168.0.101',
+                        ip: '192.168.0.15',
                         port: 9000
                     },
                     data: {

@@ -1,4 +1,4 @@
-const socket = require('socket.io-client')('https://softcomanda.herokuapp.com/1');
+const socket = require('socket.io-client')('https://softcomanda.herokuapp.com/3');
 const Printer = require('./bematech/printer');
 let printers = {};
 
@@ -30,6 +30,7 @@ module.exports = {
   // @description Realiza impressão
   // @params {Object} options - Detalhes da impressão, como IP / Porta da impressora, dados de template e layout de impressão
   print(options) {
+    console.log("testse");
     this._validatePrint(options).then(() => {
 
       // Notifica recebimento de impressão
