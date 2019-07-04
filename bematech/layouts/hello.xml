@@ -1,10 +1,5 @@
 <root cut="full">
-  <line align="center" textTransform="bold" fontSize="expanded">{{ hello }}</line>
-  <line align="center" textTransform="italic" fontSize="expanded">{{ hello }}</line>
-  <line align="center" textTransform="bold" fontSize="expanded">{{ hello }}</line>
-  <line align="center" textTransform="italic" fontSize="expanded">{{ hello }}</line>
-  <line align="center" textTransform="bold" fontSize="expanded">{{ hello }}</line>
-  <line align="center" textTransform="italic" fontSize="expanded">{{ hello }}</line>
-  <line align="center" textTransform="bold" fontSize="expanded">{{ hello }}</line>
-  <line align="center" textTransform="italic" fontSize="expanded">{{ hello }}</line>
+	<line></line>
+ 	<line align="center" textTransform="bold">Impressora conectada: IP {{ ip }}</line>
+ 	<line></line>
 </root>

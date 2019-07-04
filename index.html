@@ -31,18 +31,26 @@
                 <h6 class="mb-3">Status da Conexāo</h6>
                 <ul class="list-group small">
                     <li class="list-group-item">
-                        <span class="circle" :class="{'ativo': conectado}">&nbsp;</span>
-                        <span style="padding-left: 26px">Conectado ao servidor</span>
+                        <span class="circle" :class="{'ativo': conectado === 1}">&nbsp;</span>
+                        <span style="padding-left: 26px">
+                          {{statusConexao()}}
+                        </span>
                     </li>
                     <li class="list-group-item">
-                        <span class="circle" :class="{'ativo': printerConectada}">&nbsp;</span>
-                        <span style="padding-left: 26px">Impressora conectada</span>
+                        <span class="circle" :class="{'ativo': printerConectada === 1}">&nbsp;</span>
+                        <span style="padding-left: 26px">
+                          {{statusPrinter()}}
+                        </span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>IP:</b>
+                        <span style="padding-left: 8px">
+                          {{printer.printer ? printer.printer.ip : 'Aguardando'}}
+                          -
+                          <a href="javascript:" @clik="">Atualizar</a>
+                        </span>
                     </li>
                 </ul>
-                <!-- <div class="small mt-4">
-                  <div class="p-1"><b>Empresa:</b> <br> {{dados.razao_social}}</div>
-                  <div class="p-1"><b>Plano:</b>  <br> {{dados.nome_plano}}</div>
-                </div> -->
             </div>
             <div class="col-7">
                 <h6 class="mb-3">Logs</h6>
@@ -60,85 +68,83 @@
 
     <script src="assets/vue.js"></script>
     <script src="assets/socket.io.js"></script>
+    <script src="assets/vue-resource.js"></script>
+
     <script>
         var empresa = 3;
         var socket = io('https://softcomanda.herokuapp.com/' + empresa);
+        //var base_url = "https://softcomanda.tk/dev/api/";
+        var base_url = "http://localhost/lecard-server/api/";
 
         var app = new Vue({
             el: '#app',
             data: {
                 messages: [],
-                conectado: false,
-                printerConectada: false,
+                conectado: 0,
+                printerConectada: 0,
 
-                dados: {
-                    razao_social: "Stork Digital",
-                    nome_plano: "Smart Cozinha"
-                },
-
-                printer: {
-                   "layout":"pedido",
-                   "copies":1,
-                   "printer":{
-                      "ip":"192.168.0.15",
-                      "port":9100
-                   },
-                   "data":{
-                      "pedido":"001",
-                      "data_pedido":"03\/07\/2019 - 08:23",
-                      "tipo":"Delivery",
-                      "obs_comanda":"Nenhuma observação",
-                      "cliente":"Cliente nao informado",
-                      "nome_empresa":"Donis Pizzaria",
-                      "itens":[
-                         {
-                           "id_comanda_produto":"17",
-                           "nome_produto":"Pizza 2 Sabores",
-                           "nome_tabela":" (Grande)",
-                           "quantidade":"1",
-                           "nome_categoria":"Pizza",
-                           "observacao":"",
-                           "divisoes":"Calabresa com Catupiry,Calabresa Ralada com 3 Queijos",
-                            "adicionais":"",
-                            "remocoes":""
-                         },
-                         {
-                           "id_comanda_produto":"18",
-                           "nome_produto":"Frango e Milho",
-                           "nome_tabela":" (Grande)",
-                           "quantidade":"1",
-                           "nome_categoria":"Pizza",
-                           "observacao":"",
-                           "divisoes":" - ",
-                            "adicionais":"",
-                            "remocoes":""
-                         },
-                         {
-                           "id_comanda_produto":"19",
-                           "nome_produto":"Mista",
-                           "nome_tabela":" (Grande)",
-                           "quantidade":"1",
-                           "nome_categoria":"Pizza",
-                           "observacao":"",
-                           "divisoes":" - ",
-                            "adicionais":"",
-                            "remocoes":""
-                         }
-                      ]
-                   }
-                }
-
+                printer: {}
             },
             
             methods: {
                 testeImpressao() {
                     socket.emit('print_order', this.printer);
+                },
+
+                statusConexao() {
+                  switch(this.conectado) {
+                    case 0: 
+                      return "Aguardando conexão";
+                      break;
+                    case 1:
+                    return "Conectado ao servidor";
+                      break;
+                    case 2: 
+                      return "Servidor offline";
+                      break;
+                  }
+                },
+
+                statusPrinter() {
+                  switch(this.printerConectada) {
+                    case 0: 
+                      return "Procurando Impressora";
+                      break;
+                    case 1:
+                    return "Impressora conectada";
+                      break;
+                    case 2: 
+                      return "Impressora offline";
+                      break;
+                  }
+                },
+
+                buscarDados() {
+                  this.$http.get(base_url + 'teste-impressao/' + empresa).then(response => {
+                    this.printer = response.data;
+                    this.getStatusPrinter();
+
+                  }, response => {
+                    this.conectado = 3;
+                  });
+                },
+
+                getStatusPrinter() {
+                  let printer = {
+                    printer: {
+                     ip: this.printer.printer.ip,
+                     port: 9100
+                    },
+                    layout: 'hello'
+                  }
+
+                  socket.emit('print_order', printer);
                 }
             },
 
             created() {
                 socket.on('connect', () => {
-                    this.conectado = true;
+                    this.conectado = 1;
                 });
 
                 socket.on('message', res => {
@@ -146,13 +152,20 @@
                 });
 
                 socket.on('connect_printer', res => {
-                    console.log(res);
                     this.printerConectada = res;
                 });                
                 
                 socket.on('disconnect', function(){
-                    this.conectado = false;
+                    this.conectado = 2;
                 });
+
+                this.buscarDados();
+
+                setTimeout(() => {
+                    if (this.printerConectada === 0) {
+                      this.printerConectada = 2;
+                    }
+                }, 6000);
             }
         })
     </script>

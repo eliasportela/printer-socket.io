@@ -25,11 +25,11 @@ let Printer = class Printer {
 
       // Trata timeout da impressora
       this.client.on('timeout', (exception) => {
-        return reject({ description: 'Não foi possível conectar com a impressora ou ela foi desligada', code: 301 });
+        return reject({ description: 'Não foi possível conectar com a impressora. Verifique se ela esta na rede e tente novamente!', code: 301 });
       });
 
       this.client.on('error', (exception) => {
-        return reject({ description: 'Não foi possível conectar com a impressora ou ela foi desligada', code: 302 });
+        return reject({ description: 'Não foi possível conectar com a impressora.  Verifique se ela esta na rede e tente novamente!', code: 302 });
       });
     });
   }

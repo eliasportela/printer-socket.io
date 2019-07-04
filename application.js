@@ -5,26 +5,12 @@ let printers = {};
 module.exports = {
 
 	start() {
-		socket.on('connect', function(){
-      
-    });
+		socket.on('connect', function(){});
 
     socket.on('print_order', this.print.bind(this));
 		
-		socket.on('disconnect', function(){
-
-		});
+		socket.on('disconnect', function(){});
 	},
-
-  // @name statusPrinter
-  // @description Verifica o status da impressora
-  statusPrinter(options) {
-    this._loadPrinter(options).then((printer) => {
-      return socket.emit('connect_printer', true);
-    }, (err) => {
-      return socket.emit('connect_printer', false);
-    });
-  },
 
   // @name print
   // @description Realiza impressão
@@ -32,17 +18,13 @@ module.exports = {
   print(options) {
     this._validatePrint(options).then(() => {
 
-      // Notifica recebimento de impressão
-      //socket.emit('message', { description: `Recebendo pedido de impressão`, time: new Date(), type: 'info' });
-      socket.emit('message', { description: `IP: ${options.printer.ip}:${options.printer.port}`, time: new Date(), type: 'info' });
-
       this._loadPrinter(options).then((printer) => {
         return printer.print(options).then(() => {
-          socket.emit('connect_printer', true);
+          socket.emit('connect_printer', 1);
           socket.emit('message', { description: 'Impressão realizada com sucesso', time: new Date(), type: 'success' });
         });
       }, (err) => {
-        socket.emit('connect_printer', false);
+        socket.emit('connect_printer', 2);
         return socket.emit('message', { description: err.description, code: err.code, time: new Date(), type: 'error' });
       });
 
