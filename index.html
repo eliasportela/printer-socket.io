@@ -76,26 +76,58 @@
                     nome_plano: "Smart Cozinha"
                 },
 
-                printer: { 
-                    layout: 'pedido',
-                    copies: 1,
-                    printer: {
-                        ip: '192.168.0.15',
-                        port: 9000
-                    },
-                    data: {
-                    	"nome_empresa": "Stork Digital",
-                    	"id_comanda_produto":"244",
-                    	"nome_produto":"One Bacon",
-                    	"nome_tabela":"",
-                    	"quantidade":"1",
-                    	"data_pedido":"19\/06\/2019 - 08:20",
-                    	"tipo":"Delivery",
-                    	"observacao":"Pouca cebola",
-                    	"adicionais":"Hamburguer Artesanal, +Cheddar",
-                    	"remocoes":"Milho"
-                    }
+                printer: {
+                   "layout":"pedido",
+                   "copies":1,
+                   "printer":{
+                      "ip":"192.168.0.15",
+                      "port":9100
+                   },
+                   "data":{
+                      "pedido":"001",
+                      "data_pedido":"03\/07\/2019 - 08:23",
+                      "tipo":"Delivery",
+                      "obs_comanda":"Nenhuma observação",
+                      "cliente":"Cliente nao informado",
+                      "nome_empresa":"Donis Pizzaria",
+                      "itens":[
+                         {
+                           "id_comanda_produto":"17",
+                           "nome_produto":"Pizza 2 Sabores",
+                           "nome_tabela":" (Grande)",
+                           "quantidade":"1",
+                           "nome_categoria":"Pizza",
+                           "observacao":"",
+                           "divisoes":"Calabresa com Catupiry,Calabresa Ralada com 3 Queijos",
+                            "adicionais":"",
+                            "remocoes":""
+                         },
+                         {
+                           "id_comanda_produto":"18",
+                           "nome_produto":"Frango e Milho",
+                           "nome_tabela":" (Grande)",
+                           "quantidade":"1",
+                           "nome_categoria":"Pizza",
+                           "observacao":"",
+                           "divisoes":" - ",
+                            "adicionais":"",
+                            "remocoes":""
+                         },
+                         {
+                           "id_comanda_produto":"19",
+                           "nome_produto":"Mista",
+                           "nome_tabela":" (Grande)",
+                           "quantidade":"1",
+                           "nome_categoria":"Pizza",
+                           "observacao":"",
+                           "divisoes":" - ",
+                            "adicionais":"",
+                            "remocoes":""
+                         }
+                      ]
+                   }
                 }
+
             },
             
             methods: {

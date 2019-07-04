@@ -45,7 +45,6 @@ function createWindow () {
   })
 
   application.start();
-  application.statusPrinter();
 
   win.once('ready-to-show', () => {
     setTimeout(function(){ 

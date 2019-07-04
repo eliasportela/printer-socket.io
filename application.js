@@ -6,8 +6,8 @@ module.exports = {
 
 	start() {
 		socket.on('connect', function(){
-
-		});
+      
+    });
 
     socket.on('print_order', this.print.bind(this));
 		
@@ -30,7 +30,6 @@ module.exports = {
   // @description Realiza impressão
   // @params {Object} options - Detalhes da impressão, como IP / Porta da impressora, dados de template e layout de impressão
   print(options) {
-    console.log("testse");
     this._validatePrint(options).then(() => {
 
       // Notifica recebimento de impressão
