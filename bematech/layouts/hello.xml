@@ -1,4 +1,4 @@
-<root cut="full">
+<root cut="half">
 	<line></line>
  	<line align="center" textTransform="bold">Impressora conectada: IP {{ ip }}</line>
  	<line></line>
