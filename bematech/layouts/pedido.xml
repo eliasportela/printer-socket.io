@@ -1,16 +1,14 @@
 <root cut="half">
   <line align="center" textTransform="bold" fontSize="large">{{nome_empresa}}</line>
   <line textTransform="bold" align="center" fontSize="large">{{ tipo }} | {{ pedido }} | {{ data_pedido }}</line>
-  <line textTransform="bold" align="center">{{obs_comanda}}</line>
-  <line textTransform="bold" align="center">{{cliente}}</line>
+  <line textTransform="bold" align="center" fontSize="large">{{obs_comanda}}</line>
+  <line textTransform="bold" align="center" fontSize="large">{{cliente}}</line>
   <line align="center" textTransform="bold">--------------------------------------------------</line>
-  <line textTransform="bold" align="center">PRODUTOS</line>
-  <line textTransform="bold">#Qtd #Produto</line>
   {{#each itens}}
   <line textTransform="bold" fontSize="large"> {{quantidade}} x {{nome_produto}} {{nome_tabela}}</line>
   <line textTransform="bold" fontSize="large"> {{divisoes}}</line>
   <line textTransform="bold" fontSize="large"> #R: {{remocoes}}</line>
-  <line textTransform="bold" fontSize="large"> #Obs: {{observacao}}</line>
+  <line textTransform="bold" fontSize="large"> #Obs: c/ {{adicionais}} | {{observacao}}</line>
   <line align="center" textTransform="bold">--------------------------------------------------</line>
   {{/each}}
 </root>
