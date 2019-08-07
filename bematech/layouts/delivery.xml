@@ -1,0 +1,15 @@
+<root cut="half">
+  <line align="center" textTransform="bold" fontSize="large">{{nome_empresa}}</line>
+  <line textTransform="bold" align="center" fontSize="large">{{ tipo }} | {{ pedido }} | {{ data_pedido }}</line>
+  <line textTransform="bold" align="center" fontSize="large">{{obs_comanda}}</line>
+  <line textTransform="bold" align="center" fontSize="large">{{cliente}}</line>
+  <line align="center" textTransform="bold">--------------------------------------------------</line>
+  {{#each itens}}
+  <line textTransform="bold" fontSize="large"> {{quantidade}} x {{nome_produto}} {{nome_tabela}}</line>
+  <line textTransform="bold" fontSize="large"> {{divisoes}}</line>
+  <line textTransform="bold" fontSize="large"> #R: {{remocoes}}</line>
+  <line textTransform="bold" fontSize="large"> #Obs: c/ {{adicionais}} | {{observacao}}</line>
+  <line textTransform="bold" fontSize="large"> #Total: R$ {{total}}</line>
+  <line align="center" textTransform="bold">--------------------------------------------------</line>
+  {{/each}}
+</root>
