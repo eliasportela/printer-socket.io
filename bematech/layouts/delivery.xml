@@ -9,7 +9,7 @@
   <line textTransform="bold" fontSize="large"> {{divisoes}}</line>
   <line textTransform="bold" fontSize="large"> #R: {{remocoes}}</line>
   <line textTransform="bold" fontSize="large"> #Obs: c/ {{adicionais}} | {{observacao}}</line>
-  <line textTransform="bold" fontSize="large"> #Total: R$ {{total}}</line>
   <line align="center" textTransform="bold">--------------------------------------------------</line>
   {{/each}}
+  <line textTransform="bold" fontSize="large"> #Total: R$ {{total}}</line>
 </root>
