@@ -1,5 +1,4 @@
 <html lang="pt-br">
-<html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,7 +70,7 @@
     <script src="assets/vue-resource.js"></script>
 
     <script>
-        var empresa = 3;
+        var empresa = 'mbfqfluwjbaw3ron5psf2cqr';
         var socket = io('https://softcomanda.herokuapp.com/' + empresa);
         var base_url = "https://softcomanda.tk/api/";
         //var base_url = "http://localhost/lecard-server/api/";
@@ -95,13 +94,10 @@
                   switch(this.conectado) {
                     case 0: 
                       return "Aguardando conexão";
-                      break;
                     case 1:
                     return "Conectado ao servidor";
-                      break;
                     case 2: 
                       return "Servidor offline";
-                      break;
                   }
                 },
 
@@ -109,13 +105,10 @@
                   switch(this.printerConectada) {
                     case 0: 
                       return "Procurando Impressora";
-                      break;
                     case 1:
                     return "Impressora conectada";
-                      break;
                     case 2: 
                       return "Impressora offline";
-                      break;
                   }
                 },
 
@@ -139,7 +132,7 @@
                       ip: this.printer.printer.ip,
                     },
                     layout: 'hello'
-                  }
+                  };
 
                   socket.emit('print_order', printer);
                 }
@@ -172,6 +165,5 @@
             }
         })
     </script>
-
   </body>
 </html>

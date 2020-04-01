@@ -1,15 +1,14 @@
-const socket = require('socket.io-client')('https://softcomanda.herokuapp.com/3');
+const empresa = 'mbfqfluwjbaw3ron5psf2cqr';
+const socket = require('socket.io-client')('https://softcomanda.herokuapp.com/' + empresa);
 const Printer = require('./bematech/printer');
 let printers = {};
 
 module.exports = {
 
 	start() {
-		socket.on('connect', function(){});
-
-    socket.on('print_order', this.print.bind(this));
-		
-		socket.on('disconnect', function(){});
+	  socket.on('connect', function(){});
+      socket.on('print_order', this.print.bind(this));
+      socket.on('disconnect', function(){});
 	},
 
   // @name print
