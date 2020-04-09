@@ -1,0 +1,19 @@
+<root cut="half">
+  <line align="center" textTransform="bold" fontSize="large">{{nome_empresa}}</line>
+  <line textTransform="bold" align="center" fontSize="large">Pedido Lecard  | {{ pedido }} | {{ data_pedido }}</line>
+  <line textTransform="bold" align="center" fontSize="large">Cliente: {{nome_cliente}}</line>
+  <line textTransform="bold" align="center" fontSize="large">Telefone: {{telefone}}</line>
+  <line textTransform="bold" align="center" fontSize="large">{{endereco}}</line>
+  <line align="center" textTransform="bold">--------------------------------------------------</line>
+  {{#each itens}}
+  <line textTransform="bold" fontSize="large"> {{quantidade}}x {{nome_produto}}</line>
+  <line textTransform="bold" fontSize="large"> {{divisoes}}</line>
+  <line textTransform="bold" fontSize="large"> c/: {{adicionais}}</line>
+  <line textTransform="bold" fontSize="large"> #Obs: {{observacao}}</line>
+  <line align="center" textTransform="bold">--------------------------------------------------</line>
+  {{/each}}
+  <line textTransform="bold" fontSize="large"> #Pagamento: {{forma_pagamento}}</line>
+  <line textTransform="bold" fontSize="large"> #Total: R$ {{valor}}</line>
+  <line textTransform="bold" fontSize="large"> #Obs: {{obs_pedido}}</line>
+  <line align="center" textTransform="bold"> </line>
+</root>
